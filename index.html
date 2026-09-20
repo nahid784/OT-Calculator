@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Office OT Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Attendance OT Dashboard For MIS</p>
+          <h1>Incepta Overtime Calculator</h1>
+        </div>
+        <div class="topbar-summary">
+          <div class="mini-card">
+            <span>Total OT Hours</span>
+            <strong id="total-ot-hours">0.00</strong>
+          </div>
+          <div class="mini-card bonus-card">
+            <span>Total OT Bonus</span>
+            <strong id="total-ot-bonus">৳ 0</strong>
+          </div>
+        </div>
+      </header>
+
+      <main class="panel">
+        <section class="controls">
+          <div class="file-block">
+            <label for="attendance-file">Upload attendance report</label>
+            <input id="attendance-file" type="file" accept=".xlsx,.xls,.csv,.pdf" />
+            <small>Supports Excel, CSV, and text-based PDF attendance reports.</small>
+          </div>
+
+          <div class="salary-block">
+            <label for="basic-salary">Basic salary (৳)</label>
+            <input id="basic-salary" type="number" min="0" step="0.01" placeholder="Enter basic salary" />
+          </div>
+
+          <div class="toggle-block">
+            <label for="show-bonus">Reveal OT bonus</label>
+            <button id="toggle-bonus" class="ghost-button" type="button">Display</button>
+          </div>
+        </section>
+
+        <section class="summary-row">
+          <div class="summary-card">
+            <span>OT rate</span>
+            <strong id="ot-rate">৳ 0.00</strong>
+          </div>
+          <div class="summary-card">
+            <span>Eligible OT Days</span>
+            <strong id="eligible-days">0</strong>
+          </div>
+          <div class="summary-card">
+            <span>Rows parsed</span>
+            <strong id="rows-parsed">0</strong>
+          </div>
+        </section>
+
+        <section class="table-section">
+          <div class="table-header">
+            <h2>Parsed attendance report</h2>
+            <button id="recalculate-btn" class="primary-button" type="button">Recalculate OT</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>In Time</th>
+                  <th>Out Time</th>
+                  <th>Working Hours</th>
+                  <th>Completed</th>
+                  <th>OT Hours</th>
+                </tr>
+              </thead>
+              <tbody id="attendance-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
