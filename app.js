@@ -410,7 +410,7 @@ function calculateRowOt(row) {
     return floorQuarter(adjustedOt);
   }
 
-  if (completed < 12) return 0;
+  if (completed < 10) return 0;
 
   const baseHours = Math.max(0, completed - 9);
   const breakMinutes = computeBreakTimeMinutes(row.inTime || row.startTime, row.outTime || row.endTime);
